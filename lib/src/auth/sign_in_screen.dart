@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/auth/components/custom_text_field.dart';
+import 'package:greengrocer/src/config/custom_colors.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -8,7 +9,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.redAccent,
+      backgroundColor: CustomColors.customSwatchColor,
       body: Column(
         children: [
           Expanded(
@@ -16,11 +17,11 @@ class SignInScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //Nome do App
-                const Text.rich(
+                Text.rich(
                   TextSpan(
-                    style: TextStyle(fontSize: 40),
+                    style: const TextStyle(fontSize: 40),
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Green',
                         style: TextStyle(
                           color: Colors.white,
@@ -30,7 +31,7 @@ class SignInScreen extends StatelessWidget {
                       TextSpan(
                         text: 'grocer',
                         style: TextStyle(
-                          color: Colors.greenAccent,
+                          color: CustomColors.customContrastColor,
                         ),
                       ),
                     ],
@@ -95,6 +96,7 @@ class SignInScreen extends StatelessWidget {
                       'Entrar',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -103,10 +105,10 @@ class SignInScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       'Esqueceu a senha?',
                       style: TextStyle(
-                        color: Colors.red,
+                        color: CustomColors.customContrastColor,
                       ),
                     ),
                   ),
@@ -143,9 +145,9 @@ class SignInScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                       ),
-                      side: const BorderSide(
+                      side: BorderSide(
                         width: 1,
-                        color: Colors.redAccent,
+                        color: CustomColors.customSwatchColor,
                       ),
                     ),
                     onPressed: () {},
