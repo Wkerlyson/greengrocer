@@ -125,7 +125,7 @@ class _HomeTabState extends State<HomeTab> {
           //grid
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
