@@ -1,62 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/models/item_model.dart';
+import 'package:greengrocer/src/services/util_services.dart';
 
 class ItemTile extends StatelessWidget {
-  const ItemTile({
+  final ItemModel item;
+
+  ItemTile({
     super.key,
     required this.item,
   });
 
-  final ItemModel item;
+  final UtilServices utilServices = UtilServices();
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      shadowColor: Colors.grey.shade300,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //Imagem
-            Expanded(child: Image.asset(item.imgUrl)),
-            //Nome
-            Text(
-              item.itemName,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
+    return Stack(
+      children: [
+        Card(
+          elevation: 1,
+          shadowColor: Colors.grey.shade300,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                //Imagem
+                Expanded(child: Image.asset(item.imgUrl)),
+                //Nome
                 Text(
-                  item.price.toString(),
-                  style: TextStyle(
+                  item.itemName,
+                  style: const TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: CustomColors.customSwatchColor,
                   ),
                 ),
-                Text(
-                  ' /${item.unit}',
-                  style: TextStyle(
-                    color: Colors.grey.shade500,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      utilServices.priceToCurrency(item.price),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: CustomColors.customSwatchColor,
+                      ),
+                    ),
+                    Text(
+                      ' /${item.unit}',
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )
+                  ],
                 )
+                //Preço - Unidade
               ],
-            )
-            //Preço - Unidade
-          ],
+            ),
+          ),
         ),
-      ),
+        Positioned(
+          right: 3,
+          top: 4,
+          child: Container(
+            height: 40,
+            width: 35,
+            decoration: BoxDecoration(
+              color: CustomColors.customSwatchColor,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: const Icon(
+              Icons.add_shopping_cart_outlined,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
